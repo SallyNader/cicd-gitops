@@ -6,7 +6,7 @@ resource "aws_instance" "cicd" {
     Name = "cicd"
   }
   key_name  = var.key_name
-  user_data = base64encode(file("${path.module}/bash/install-jenkins.sh"))
+  user_data = base64encode(file("${path.module}/bash/install-packages.sh"))
 
 }
 
@@ -23,9 +23,17 @@ resource "aws_security_group" "cicd" {
   }
 
   ingress {
-    description = "Allow http from everywhere"
+    description = "Open port for Jenkins"
     from_port   = 8080
     to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+ ingress {
+    description = "Open port for Sonarqube"
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

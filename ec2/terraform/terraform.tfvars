@@ -1,5 +1,5 @@
 ami            = "ami-053b0d53c279acc90"
-instance_type  = "t2.micro"
+instance_type  = "t2.medium"
 key_name       = "ec2"
 sg_name        = "CICD"
 sg_description = "CICD-Security-Group"
