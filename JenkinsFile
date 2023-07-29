@@ -11,30 +11,30 @@ pipeline {
     agent {
         docker {
             image 'sally94/cicd-maven:latest'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock' 
-
+            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
 
     stages {
-        stage('Build'){
+        stage('Build') {
             steps {
-               sh 'echo ---Build---'
-               sh 'mvn clean package' 
+                sh 'echo ---Build---'
+                sh 'mvn clean package'
             }
         }
-        stage('Test'){
-            sh 'echo ---Test---'
-            sh 'mvn test'
+        stage('Test') {
+            steps {
+                sh 'echo ---Test---'
+                sh 'mvn test'
+            }
         }
-        stage('Code Analysis'){
+        stage('Code Analysis') {
             withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
                 sh 'echo ---Code Analysis---'
                 sh 'mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
             }
-          
         }
-        stage('Build and Push Docker Image'){
+        stage('Build and Push Docker Image') {
             steps {
                 def dockerImage = docker.image("${DOCKER_IMAGE}")
                 sh 'docker build -t ${DOCKER_IMAGE} .'
@@ -43,7 +43,7 @@ pipeline {
                 }
             }
         }
-        stage('Update Deployment File'){
+        stage('Update Deployment File') {
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
@@ -55,6 +55,5 @@ pipeline {
                 }
             }
         }
-
     }
 }
