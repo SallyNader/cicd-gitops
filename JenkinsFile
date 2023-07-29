@@ -2,15 +2,15 @@ pipeline {
     environment {
         BUILD_NUMBER = '1'
         DOCKER_IMAGE = 'sally94/cicd'
-        SONAR_URL = ''
+        SONAR_URL = 'http://44.211.82.183:3000'
         GIT_REPO_NAME = 'cicd-gitops'
         GIT_USER_NAME = 'SallyNader'
-        REGISTRY_CREDENTIALS = ''
+        REGISTRY_CREDENTIALS = credentials('docker-credential')
     }
 
     agent {
         docker {
-            image 'sally94/maven:latest'
+            image 'sally94/cicd-maven:latest'
             args '--user root -v /var/run/docker.sock:/var/run/docker.sock' 
 
         }
