@@ -5,6 +5,7 @@ pipeline {
         SONAR_URL = 'http://54.175.5.133:3000'
         GIT_REPO_NAME = 'cicd-gitops'
         GIT_USER_NAME = 'SallyNader'
+        GIT_EMAIL = 'sallynaderahmed@gmail.com'
         REGISTRY_CREDENTIALS = credentials('docker-credential')
     }
 
@@ -60,6 +61,8 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
+                        git config --global user.email "${GIT_EMAIL}"
+                        git config --global user.name "${GIT_USER_NAME}"
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
                         git add spring-boot-app-manifests/deployment.yml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
