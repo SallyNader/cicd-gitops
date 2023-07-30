@@ -2,7 +2,7 @@ pipeline {
     environment {
         BUILD_NUMBER = '1'
         DOCKER_IMAGE = 'sally94/cicd'
-        SONAR_URL = 'http://3.82.108.80:3000'
+        SONAR_URL = 'http://54.175.5.133:3000'
         GIT_REPO_NAME = 'cicd-gitops'
         GIT_USER_NAME = 'SallyNader'
         REGISTRY_CREDENTIALS = credentials('docker-credential')
