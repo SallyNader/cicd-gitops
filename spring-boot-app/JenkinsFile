@@ -11,7 +11,7 @@ pipeline {
     agent {
         docker {
             image 'sally94/cicd-maven:latest'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+          
         }
     }
 
