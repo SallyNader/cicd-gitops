@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        BUILD_NUMBER = '3'
+        BUILD_NUMBER = '4'
         GIT_USER_NAME = 'SallyNader'
         DOCKER_IMAGE = "sally94/cicd"
         GIT_REPO_NAME = 'cicd-gitops'
@@ -61,11 +61,9 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
-                        image="${DOCKER_IMAGE}:v${BUILD_NUMBER}"
-                        escaped=$(echo "$image" | sed 's/[\/&]/\\&/g') 
                         git config --global user.email "${GIT_EMAIL}"
                         git config --global user.name "${GIT_USER_NAME}"
-                        sed -i "s/image:.*/image: ${escaped}/g" spring-boot-app-manifests/deployment.yml
+                        sed -i "s/:v.*/:v${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
                         git add spring-boot-app-manifests/deployment.yml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
