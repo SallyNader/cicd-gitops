@@ -62,7 +62,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
                         image="${DOCKER_IMAGE}:v${BUILD_NUMBER}"
-                        escaped=$(echo "$image" | sed "s/[\\/&]/\\&/g") 
+                        escaped=$(echo "$image" | sed "s/[\/&]/\\&/g") 
                         git config --global user.email "${GIT_EMAIL}"
                         git config --global user.name "${GIT_USER_NAME}"
                         sed -i "s/image:.*/image: ${escaped}/g" spring-boot-app-manifests/deployment.yml
