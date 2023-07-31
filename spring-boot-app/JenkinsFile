@@ -62,7 +62,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
                         image="${DOCKER_IMAGE}:v${BUILD_NUMBER}"
-                        escaped=image.replace("/", "\\/")
+                        escaped=$image.replace("/", "\\/")
                         
                         git config --global user.email "${GIT_EMAIL}"
                         git config --global user.name "${GIT_USER_NAME}"
