@@ -23,8 +23,6 @@ pipeline {
                 dir('spring-boot-app') {
                     sh 'echo ---Build---'
                     sh 'mvn clean package'
-                    sh 'chown -R jenkins:jenkins target/'
-                    sh 'chmod 777 -R target/'
                 }
             }
         }
