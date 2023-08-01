@@ -4,7 +4,7 @@ pipeline {
         GIT_USER_NAME = 'SallyNader'
         DOCKER_IMAGE = "sally94/cicd"
         GIT_REPO_NAME = 'cicd-gitops'
-        SONAR_URL = 'http://44.201.112.10:3000'
+        SONAR_URL = 'http://localhost:9000'
         GIT_EMAIL = 'sallynaderahmed@gmail.com'
         REGISTRY_CREDENTIALS = credentials('docker-credential')
     }
