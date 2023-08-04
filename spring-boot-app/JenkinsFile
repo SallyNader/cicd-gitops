@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        BUILD_NUMBER = '4'
+        BUILD_NUMBER = '5'
         GIT_USER_NAME = 'SallyNader'
         DOCKER_IMAGE = "sally94/cicd"
         GIT_REPO_NAME = 'cicd-gitops'
@@ -23,8 +23,6 @@ pipeline {
                 dir('spring-boot-app') {
                     sh 'echo ---Build---'
                     sh 'mvn clean package'
-                    sh 'chown -R jenkins:jenkins target/'
-                    sh 'chmod 777 -R target/'
                 }
             }
         }
