@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        BUILD_NUMBER = '5'
+        BUILD_NUMBER = '6'
         GIT_USER_NAME = 'SallyNader'
         DOCKER_IMAGE = "sally94/cicd"
         GIT_REPO_NAME = 'cicd-gitops'
@@ -63,7 +63,8 @@ pipeline {
                     sh '''
                         git config --global user.email "${GIT_EMAIL}"
                         git config --global user.name "${GIT_USER_NAME}"
-                        sed -i "s/:v.*/:v${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
+                        sed -i "s/:v[0-9]/:v${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
+                        sed -i "s/:v[0-9]/:v${BUILD_NUMBER}/g" spring-boot-app/src/main/java/com/abhishek/StartApplication.java
                         git add spring-boot-app-manifests/deployment.yml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
