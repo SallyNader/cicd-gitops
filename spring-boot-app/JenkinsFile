@@ -35,16 +35,7 @@ pipeline {
                 }
             }
         }
-        stage('Code Analysis') {
-            steps {
-                dir('spring-boot-app') {
-                    withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-                        sh 'echo ---Code Analysis---'
-                        sh 'mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
-                    }
-                }
-            }
-        }
+        
         stage('Build and Push Docker Image') {
             steps {
                 dir('spring-boot-app') {
