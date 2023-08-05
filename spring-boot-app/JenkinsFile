@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        BUILD_NUMBER = '11'
+        BUILD_NUMBER = '12'
         GIT_USER_NAME = 'SallyNader'
         DOCKER_IMAGE = "sally94/cicd"
         GIT_REPO_NAME = 'cicd-gitops'
