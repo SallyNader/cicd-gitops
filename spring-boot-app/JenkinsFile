@@ -22,6 +22,7 @@ pipeline {
             steps {
                 dir('spring-boot-app') {
                     sh 'echo ---Build---'
+                    sh 'sed -i "s/:v[0-9]/:v${BUILD_NUMBER}/g" src/main/java/com/sally/StartApplication.java'
                     sh 'mvn clean package'
                 }
             }
@@ -65,7 +66,7 @@ pipeline {
                         git config --global user.name "${GIT_USER_NAME}"
 
                         sed -i "s/:v[0-9]/:v${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
-                        sed -i "s/:v[0-9]/:v${BUILD_NUMBER}/g" spring-boot-app/src/main/java/com/sally/StartApplication.java
+                      
 
                         git add spring-boot-app-manifests/deployment.yml
                         git add spring-boot-app/src/main/java/com/sally/StartApplication.java
