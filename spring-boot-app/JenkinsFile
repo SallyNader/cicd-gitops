@@ -1,10 +1,10 @@
 pipeline {
     environment {
-        BUILD_NUMBER = '11'
+        BUILD_NUMBER = '8'
         GIT_USER_NAME = 'SallyNader'
         DOCKER_IMAGE = "sally94/cicd"
         GIT_REPO_NAME = 'cicd-gitops'
-        SONAR_URL = 'http://54.173.47.251:3000'
+        SONAR_URL = 'http://35.170.201.23:3000'
         GIT_EMAIL = 'sallynaderahmed@gmail.com'
         REGISTRY_CREDENTIALS = credentials('docker-credential')
     }
@@ -32,6 +32,16 @@ pipeline {
                 dir('spring-boot-app') {
                     sh 'echo ---Test---'
                     sh 'mvn test'
+                }
+            }
+        }
+         stage('Code Analysis') {
+            steps {
+                dir('spring-boot-app') {
+                    withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+                        sh 'echo ---Code Analysis---'
+                        sh 'mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+                    }
                 }
             }
         }
