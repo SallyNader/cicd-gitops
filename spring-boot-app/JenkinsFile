@@ -35,7 +35,6 @@ pipeline {
                 }
             }
         }
-        
         stage('Build and Push Docker Image') {
             steps {
                 dir('spring-boot-app') {
@@ -55,10 +54,7 @@ pipeline {
                     sh '''
                         git config --global user.email "${GIT_EMAIL}"
                         git config --global user.name "${GIT_USER_NAME}"
-
                         sed -i "s/:v[0-9]/:v${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
-                      
-
                         git add spring-boot-app-manifests/deployment.yml
                         git add spring-boot-app/src/main/java/com/sally/StartApplication.java
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
