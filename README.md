@@ -2,9 +2,12 @@
 
 
 
-https://github.com/SallyNader/cicd-gitops/assets/14328150/08d5a5a8-32a4-4c89-ad4d-f9bf41a0d3cb
+https://github.com/SallyNader/cicd-gitops/assets/14328150/fb78eab2-67a3-4161-831b-160578f8d072
 
 
+
+
+<br/><br/>
 
 
 ![nnnnnnn](https://github.com/SallyNader/cicd-gitops/assets/14328150/609bebad-6d24-4c3b-aeb7-1e423417ae34)
@@ -38,7 +41,7 @@ Jenkins and Docker will be installed on the launch of the instance.
 
 **2- Java Application** code hosted on Git repository. <br/>
 
-**3- SonarQube** for analysis Java code. <br/>
+**3- SonarQube** for analyzing Java code. <br/>
 
 **4- Docker Images,**  I created two images, **sally94/cicd-maven** to be used in docker agent in the pipeline and also I created **sally94/cicd** image to be used in the Kubernetes deployment.<br/>
 
