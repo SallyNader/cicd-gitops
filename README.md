@@ -2,18 +2,6 @@
 
 
 
-https://github.com/SallyNader/cicd-gitops/assets/14328150/fb78eab2-67a3-4161-831b-160578f8d072
-
-
-
-
-<br/><br/>
-
-
-![nnnnnnn](https://github.com/SallyNader/cicd-gitops/assets/14328150/609bebad-6d24-4c3b-aeb7-1e423417ae34)
-
-
-
 ## Project Summery:
 This project aims to deploy Java application on Kubernetes cluster using some tools.
 <br/>
