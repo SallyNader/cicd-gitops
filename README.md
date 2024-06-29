@@ -1,5 +1,6 @@
 
 
+![27-6new drawio](https://github.com/SallyNader/cicd-gitops/assets/14328150/88fd8e69-5b27-41ec-ba97-07e8fdaaf57f)
 
 
 ## Project Summery:
